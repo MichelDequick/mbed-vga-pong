@@ -35,3 +35,17 @@ void configPCR(int port, int pin, int direction){
 		GPIOE->PDDR |= (direction << pin);
 	}
 }
+
+void setValueOnPin(int port, int pin, int value){
+	if(port == 0){
+			GPIOA->PDOR = (value << pin);
+		} else if(port == 1){
+			GPIOB->PDOR = (value << pin);
+		} else if(port == 2){
+			GPIOC->PDOR = (value << pin);
+		} else if(port == 3){
+			GPIOD->PDOR = (value << pin);
+		} else if(port == 4){
+			GPIOE->PDOR = (value << pin);
+		}
+}

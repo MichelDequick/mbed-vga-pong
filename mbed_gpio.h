@@ -75,5 +75,6 @@ enum portE {PTE1 = 1,
 
 void setClockGating();
 void configPCR(int port, int pin, int direction);
+void setValueOnPin(int port, int pin, int value);
 
 #endif /* MBED_GPIO_H_ */
