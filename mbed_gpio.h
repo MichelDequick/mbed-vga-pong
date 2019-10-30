@@ -15,11 +15,11 @@
 #define PORT_D_CGC 					0x1000
 #define PORT_E_CGC 					0x2000
 
-enum port {PORT_A,
-		   PORT_B,
-		   PORT_C,
-		   PORT_D,
-		   PORT_E};
+enum portName {PORT_A,
+		   	   PORT_B,
+			   PORT_C,
+			   PORT_D,
+			   PORT_E};
 
 enum portA {PTA1 = 1,
 			PTA2 = 2,
@@ -32,6 +32,7 @@ enum portB {PTB2 = 2,
 			PTB11 = 11,
 			PTB18 = 18,
 			PTB19 = 19,
+			PTB20 = 20,
 			PTB21 = 21,
 			PTB22 = 22,
 			PTB23 = 23};
@@ -74,7 +75,8 @@ enum portE {PTE1 = 1,
 			PTE26 = 26};
 
 void setClockGating();
-void configPCR(int port, int pin, int direction);
-void setValueOnPin(int port, int pin, int value);
+void configPCR(enum portName port, int pin, int direction);
+void setValueOnPin(enum portName port, int pin, int value);
+uint8_t getValueFromPin(enum portName port, int pin);
 
 #endif /* MBED_GPIO_H_ */

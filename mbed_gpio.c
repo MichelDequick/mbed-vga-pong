@@ -17,35 +17,70 @@ void setClockGating() {
 	SIM->SCGC5 |= PORT_E_CGC; //Enable Port E Clock Gate Control
 }
 
-void configPCR(int port, int pin, int direction){
-	if(port == 0){
-		PORTA->PCR[pin] = 0x100;
-		GPIOA->PDDR |= (direction << pin);
-	} else if(port == 1){
-		PORTB->PCR[pin] = 0x100;
-		GPIOB->PDDR |= (direction << pin);
-	} else if(port == 2){
-		PORTC->PCR[pin] = 0x100;
-		GPIOC->PDDR |= (direction << pin);
-	} else if(port == 3){
-		PORTD->PCR[pin] = 0x100;
-		GPIOD->PDDR |= (direction << pin);
-	} else if(port == 4){
-		PORTE->PCR[pin] = 0x100;
-		GPIOE->PDDR |= (direction << pin);
+void configPCR(enum portName port, int pin, int direction){
+	switch(port){
+		case PORT_A:
+			PORTA->PCR[pin] = 0x100;
+			GPIOA->PDDR |= (direction << pin);
+			break;
+		case PORT_B:
+			PORTB->PCR[pin] = 0x100;
+			GPIOB->PDDR |= (direction << pin);
+			break;
+		case PORT_C:
+			PORTC->PCR[pin] = 0x100;
+			GPIOC->PDDR |= (direction << pin);
+			break;
+		case PORT_D:
+			PORTD->PCR[pin] = 0x100;
+			GPIOD->PDDR |= (direction << pin);
+			break;
+		case PORT_E:
+			PORTE->PCR[pin] = 0x100;
+			GPIOE->PDDR |= (direction << pin);
+			break;
 	}
 }
 
-void setValueOnPin(int port, int pin, int value){
-	if(port == 0){
+void setValueOnPin(enum portName port, int pin, int value){
+	switch(port){
+		case PORT_A:
 			GPIOA->PDOR = (value << pin);
-		} else if(port == 1){
+			break;
+		case PORT_B:
 			GPIOB->PDOR = (value << pin);
-		} else if(port == 2){
+			break;
+		case PORT_C:
 			GPIOC->PDOR = (value << pin);
-		} else if(port == 3){
+			break;
+		case PORT_D:
 			GPIOD->PDOR = (value << pin);
-		} else if(port == 4){
+			break;
+		case PORT_E:
 			GPIOE->PDOR = (value << pin);
+			break;
 		}
+}
+
+uint8_t getValueFromPin(enum portName port, int pin){
+	uint8_t retval;
+
+	switch(port){
+		case PORT_A:
+			retval = ((GPIOA->PDIR & (1 << pin)) != 0);
+			break;
+		case PORT_B:
+			retval = ((GPIOB->PDIR & (1 << pin)) != 0) ;
+			break;
+		case PORT_C:
+			retval = ((GPIOC->PDIR & (1 << pin)) != 0) ;
+			break;
+		case PORT_D:
+			retval = ((GPIOD->PDIR & (1 << pin)) != 0) ;
+			break;
+		case PORT_E:
+			retval = ((GPIOE->PDIR & (1 << pin)) != 0) ;
+			break;
+	}
+	return retval;
 }
