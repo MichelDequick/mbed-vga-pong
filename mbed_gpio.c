@@ -8,8 +8,9 @@
 
 #include "MK64F12.h"
 #include "mbed_gpio.h"
+#include "enum_ports.h"
 
-void setClockGating() {
+void initGPIO() {
 	SIM->SCGC5 |= PORT_A_CGC; //Enable Port A Clock Gate Control
 	SIM->SCGC5 |= PORT_B_CGC; //Enable Port B Clock Gate Control
 	SIM->SCGC5 |= PORT_C_CGC; //Enable Port C Clock Gate Control
@@ -17,26 +18,26 @@ void setClockGating() {
 	SIM->SCGC5 |= PORT_E_CGC; //Enable Port E Clock Gate Control
 }
 
-void configPCR(enum portName port, int pin, int direction){
+void configPCR(enum portName port, int pin, int direction, enum confType type){
 	switch(port){
 		case PORT_A:
-			PORTA->PCR[pin] = 0x100;
+			PORTA->PCR[pin] = type;
 			GPIOA->PDDR |= (direction << pin);
 			break;
 		case PORT_B:
-			PORTB->PCR[pin] = 0x100;
+			PORTB->PCR[pin] = type;
 			GPIOB->PDDR |= (direction << pin);
 			break;
 		case PORT_C:
-			PORTC->PCR[pin] = 0x100;
+			PORTC->PCR[pin] = type;
 			GPIOC->PDDR |= (direction << pin);
 			break;
 		case PORT_D:
-			PORTD->PCR[pin] = 0x100;
+			PORTD->PCR[pin] = type;
 			GPIOD->PDDR |= (direction << pin);
 			break;
 		case PORT_E:
-			PORTE->PCR[pin] = 0x100;
+			PORTE->PCR[pin] = type;
 			GPIOE->PDDR |= (direction << pin);
 			break;
 	}

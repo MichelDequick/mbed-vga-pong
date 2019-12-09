@@ -33,7 +33,13 @@
  * @brief   Application entry point.
  */
 #include "MK64F12.h"
+#include "hardware_init.h"
+#include "input_control.h"
 #include "mbed_gpio.h"
+#include "mbed_ADC.h"
+#include "pong.h"
+#include <stdio.h>
+#include <stdint.h>
 
 /* TODO: insert other include files here. */
 
@@ -44,7 +50,26 @@
  */
 
 int main(void) {
-	setClockGating();
-	configPCR(PORT_B, PTB21, 1);
+	init();
+	//initPinInputGPIO(PORT_C, PTC12);
+	initField();
+	drawPadlleL(readPotentiometer(POT1));
+	drawPadlleR(readPotentiometer(POT2));
+	drawball(10, 5);
+	printField();
+	/*initPinInterrupt(PORT_C, PTC12);
+	while(1){
+		if (readButton(PORT_C, PTC12) == 1){
+			interrupt();
+		}
+	}*/
+	/*while(1){
+		printf("The value is %i \n", readButton(PORT_C, PTC12));
+	}*/
+	//configPCR(PORT_B, PTB3, 0, GPIO);
+	/*while(1){
+		printf("Pot1: %i \n", readPot(POT1));
+		printf("Pot2: %i \n", readPot(POT2));
+	}*/
 	return 0;
 }
