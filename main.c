@@ -52,11 +52,20 @@
 int main(void) {
 	init();
 	//initPinInputGPIO(PORT_C, PTC12);
-	initField();
-	drawPadlleL(readPotentiometer(POT1));
-	drawPadlleR(readPotentiometer(POT2));
-	drawball(10, 5);
+	initPong();
+	ballStart();
+	ballMovement();
+	ballMovement();
 	printField();
+	/*initPong();
+	printField();*/
+	/*drawPadlleL(0.03);
+	drawPadlleR(0.05);
+	drawball(10, 5);
+	drawPadlleL(0);
+	drawPadlleR(0);
+	drawball(20, 5);
+	printField();*/
 	/*initPinInterrupt(PORT_C, PTC12);
 	while(1){
 		if (readButton(PORT_C, PTC12) == 1){

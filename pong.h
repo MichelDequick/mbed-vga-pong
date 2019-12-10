@@ -5,7 +5,9 @@
  *      Author: Donovan
  */
 
+#include <stdlib.h>
 #include <stdio.h>
+#include "input_control.h"
 
 #ifndef PONG_H_
 #define PONG_H_
@@ -16,10 +18,15 @@
 #define PADDLE_HEIGHT					6
 #define BALL_DIAMETER					3
 
-void initField();
+void initPong();
 void printField();
 void drawPadlleL(float position_float);
 void drawPadlleR(float position_float);
 void drawball(int x_pos, int y_pos);
-
+void deletePaddleR();
+void deletePaddleL();
+void deleteBall();
+int randomStart();
+void ballStart();
+void ballMovement();
 #endif /* PONG_H_ */
