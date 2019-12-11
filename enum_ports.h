@@ -68,7 +68,7 @@ enum portE {PTE1 = 1,
 			PTE26 = 26};
 
 enum confType {GPIO = 0x100,
-			   INTERRUPT = 0xC0100};
+			   INTERRUPT = 0xA0103};
 
 enum potentiometer { POT1 = 0xC,
 		   	   	     POT2 = 0xD,

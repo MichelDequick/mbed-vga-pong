@@ -5,24 +5,26 @@
  *      Author: Donovan
  */
 #include "pong.h"
+#include "vga_driver/vga_driver.h"
 
-typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
-int window[FIELD_WIDTH][FIELD_HEIGHT];
+//typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
+//int window[FIELD_WIDTH][FIELD_HEIGHT];
 int OldPaddleL = 0;
 int OldPaddleR = 0;
 int ballx = ((FIELD_WIDTH/2) - 1)*100;
 int bally = ((FIELD_HEIGHT/2) - 1)*100;
 int dx, dy;
 int scoreL, scoreR = 0;
+//int ** window;
 
 
-
-void initPong(){
+void initPong(){//int ** screen){
+	//window = screen;
 	dx = randomStart();
 	dy = randomStart()/2;
 	for (int y = 0; y < FIELD_HEIGHT; y++){
 		for (int x = 0; x < FIELD_WIDTH; x++){
-			window[x][y] = 0;
+			screen[y][x] = 0;
 		}
 	}
 	drawball(ballx, bally);
@@ -30,21 +32,12 @@ void initPong(){
 	drawPadlleR(readPotentiometer(POT2));
 }
 
-void printField(){
-	for (int y = 0; y < FIELD_HEIGHT; y++){
-		for (int x = 0; x < FIELD_WIDTH; x++){
-			printf("%i", window[x][y]);
-		}
-		printf("\n");
-	}
-}
-
 void drawPadlleL(float position_float){
 	int position = (int)((FIELD_HEIGHT - PADDLE_HEIGHT)* position_float);
 	deletePaddleL();
 	for (int y = position; y < PADDLE_HEIGHT + position; y++){
 		for (int x = PADDLE_WIDTH; x < 2*PADDLE_WIDTH; x++){
-			window[x][y] = 1;
+			screen[y][x] = 1;
 		}
 	}
 	OldPaddleL = position;
@@ -55,7 +48,7 @@ void drawPadlleR(float position_float){
 	deletePaddleR();
 	for (int y = position; y < PADDLE_HEIGHT + position; y++){
 		for (int x = FIELD_WIDTH - 2*PADDLE_WIDTH; x < FIELD_WIDTH - PADDLE_WIDTH; x++){
-			window[x][y] = 1;
+			screen[y][x] = 1;
 		}
 	}
 	OldPaddleR = position;
@@ -67,7 +60,7 @@ void drawball(int x_pos, int y_pos){
 	deleteBall();
 	for (int y = y_pos - 1; y < y_pos + BALL_DIAMETER - 1; y++){
 		for (int x = x_pos - 1; x < x_pos + BALL_DIAMETER - 1; x++){
-			window[x][y] = 1;
+			screen[y][x] = 1;
 		}
 	}
 }
@@ -75,7 +68,7 @@ void drawball(int x_pos, int y_pos){
 void deletePaddleL(){
 	for (int y = OldPaddleL; y < PADDLE_HEIGHT + OldPaddleL; y++){
 		for (int x = PADDLE_WIDTH; x < 2*PADDLE_WIDTH; x++){
-			window[x][y] = 0;
+			screen[y][x] = 0;
 		}
 	}
 }
@@ -83,7 +76,7 @@ void deletePaddleL(){
 void deletePaddleR(){
 	for (int y = OldPaddleR; y < PADDLE_HEIGHT + OldPaddleR; y++){
 		for (int x = FIELD_WIDTH - 2*PADDLE_WIDTH; x < FIELD_WIDTH - PADDLE_WIDTH; x++){
-			window[x][y] = 0;
+			screen[y][x] = 0;
 		}
 	}
 }
@@ -93,7 +86,7 @@ void deleteBall(){
 	int y_pos = ((bally - dy)/100);
 	for (int y = y_pos - 1; y < y_pos + BALL_DIAMETER - 1; y++){
 		for (int x = x_pos - 1; x < x_pos + BALL_DIAMETER - 1; x++){
-			window[x][y] = 0;
+			screen[y][x] = 0;
 		}
 	}
 }
@@ -152,12 +145,9 @@ void gameRestart(){
 	deleteBall();
 	ballx = ((FIELD_WIDTH/2) - 1)*100;
 	bally = ((FIELD_HEIGHT/2) - 1)*100;
-	dx = randomStart();
-	dy = randomStart()/2;
-}
+	dx = -100;//randomStart();
+	dy = 50;//randomStart()/2;
 
-screen * getWindow(){
-	return &window;
 }
 
 

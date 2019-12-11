@@ -14,13 +14,13 @@
 
 #define FIELD_WIDTH						80
 #define FIELD_HEIGHT					60
-#define PADDLE_WIDTH					2
-#define PADDLE_HEIGHT					6
+#define PADDLE_WIDTH					3
+#define PADDLE_HEIGHT					8
 #define BALL_DIAMETER					3
 
-typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
+//typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
 
-void initPong();
+void initPong();//int ** window);
 void printField();
 void drawPadlleL(float position_float);
 void drawPadlleR(float position_float);
@@ -32,5 +32,4 @@ int randomStart();
 void calculateNewFrame();
 void detectCollision();
 void gameRestart();
-screen * getWindow();
 #endif /* PONG_H_ */

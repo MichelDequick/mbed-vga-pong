@@ -10,6 +10,15 @@
 #include "mbed_gpio.h"
 #include "enum_ports.h"
 
+int toggle;
+
+int getTog(void) {
+	return toggle;
+}
+void setTog(int v) {
+	toggle = v;
+}
+
 void initGPIO() {
 	SIM->SCGC5 |= PORT_A_CGC; //Enable Port A Clock Gate Control
 	SIM->SCGC5 |= PORT_B_CGC; //Enable Port B Clock Gate Control
@@ -31,6 +40,8 @@ void configPCR(enum portName port, int pin, int direction, enum confType type){
 		case PORT_C:
 			PORTC->PCR[pin] = type;
 			GPIOC->PDDR |= (direction << pin);
+			PORTC->ISFR = PORT_ISFR_ISF(0x40);
+			NVIC_EnableIRQ(PORTC_IRQn);
 			break;
 		case PORT_D:
 			PORTD->PCR[pin] = type;
@@ -85,3 +96,12 @@ uint8_t getValueFromPin(enum portName port, int pin){
 	}
 	return retval;
 }
+
+void PORTC_IRQHandler()
+{
+	toggle++;
+	//NVIC_DisableIRQ(PORTC_IRQn);
+	PORTC->ISFR = PORT_ISFR_ISF(0x40);
+}
+
+

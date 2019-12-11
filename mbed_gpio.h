@@ -18,9 +18,12 @@
 #define PORT_D_CGC 					0x1000
 #define PORT_E_CGC 					0x2000
 
+int getTog(void);
+void setTog(int v);
 void initGPIO();
 void configPCR(enum portName port, int pin, int direction, enum confType type);
 void setValueOnPin(enum portName port, int pin, int value);
 uint8_t getValueFromPin(enum portName port, int pin);
+void PORTC_IRQHandler();
 
 #endif /* MBED_GPIO_H_ */

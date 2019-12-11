@@ -13,7 +13,6 @@
 
 float readPotentiometer(enum potentiometer pot);
 uint8_t readButton(enum portName port, int pin);
-void interrupt();
-void PORTC_IRQHandler();
+int getToggle();
 
 #endif /* INPUT_CONTROL_H_ */

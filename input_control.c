@@ -19,15 +19,3 @@ float readPotentiometer(enum potentiometer pot){
 uint8_t readButton(enum portName port, int pin){ //for button port c ptc 12
 	return getValueFromPin(port, pin) == 0 ? 0 : 1; //push in = 1, not pushed in = 0
 }
-
-void interrupt(){
-	PORTC->ISFR = PORT_ISFR_ISF(0x40);
-	NVIC_EnableIRQ(PORTC_IRQn);
-}
-
-void PORTC_IRQHandler()
-{
-	printf("Do interrupt stuff here \n");
-	NVIC_DisableIRQ(PORTC_IRQn);
-	PORTC->ISFR = PORT_ISFR_ISF(0x40);
-}
