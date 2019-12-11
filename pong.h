@@ -18,6 +18,8 @@
 #define PADDLE_HEIGHT					6
 #define BALL_DIAMETER					3
 
+typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
+
 void initPong();
 void printField();
 void drawPadlleL(float position_float);
@@ -27,6 +29,8 @@ void deletePaddleR();
 void deletePaddleL();
 void deleteBall();
 int randomStart();
-void ballStart();
-void ballMovement();
+void calculateNewFrame();
+void detectCollision();
+void gameRestart();
+screen * getWindow();
 #endif /* PONG_H_ */

@@ -50,13 +50,16 @@
  */
 
 int main(void) {
+	//typedef int screen[80][60];
+	//screen * window;
 	init();
 	//initPinInputGPIO(PORT_C, PTC12);
 	initPong();
-	ballStart();
-	ballMovement();
-	ballMovement();
+	calculateNewFrame();
 	printField();
+	/*ballStart();
+	ballMovement();
+	ballMovement();*/
 	/*initPong();
 	printField();*/
 	/*drawPadlleL(0.03);

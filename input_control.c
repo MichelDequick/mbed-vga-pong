@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 float readPotentiometer(enum potentiometer pot){
-	return (float)(readPot(pot)/65536);
+	return (float)readPot(pot)/65536;
 }
 
 uint8_t readButton(enum portName port, int pin){ //for button port c ptc 12
