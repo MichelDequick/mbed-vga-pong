@@ -8,12 +8,14 @@
 #ifndef ENUM_PORTS_H_
 #define ENUM_PORTS_H_
 
+//////////////////////////// ENUM FOR PORT NAME /////////////////////////////
 enum portName {PORT_A,
 		   	   PORT_B,
 			   PORT_C,
 			   PORT_D,
 			   PORT_E};
 
+//////////////////////////// ENUMS FOR PINS /////////////////////////////
 enum portA {PTA1 = 1,
 			PTA2 = 2,
 			PTA4 = 4};
@@ -67,11 +69,12 @@ enum portE {PTE1 = 1,
 			PTE25 = 25,
 			PTE26 = 26};
 
+//////////////////////////// ENUM FOR PIN CONFIGURATION TYPE /////////////////////////////
 enum confType {GPIO = 0x100,
-			   INTERRUPT = 0xA0103};
+			   INTERRUPT = 0xC0100};
 
+//////////////////////////// ENUM FOR POTENTIOMETER HEX VALUES ////////////////////////////
 enum potentiometer { POT1 = 0xC,
-		   	   	     POT2 = 0xD,
-					 POT3 = 0xE};
+		   	   	     POT2 = 0xD};
 
 #endif /* ENUM_PORTS_H_ */

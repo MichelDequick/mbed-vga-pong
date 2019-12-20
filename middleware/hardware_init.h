@@ -5,10 +5,13 @@
  *      Author: Donovan
  */
 
-#include "enum_ports.h"
+#include "drivers/ADC/mbed_ADC.h"
+#include "drivers/GPIO/mbed_gpio.h"
 
 #ifndef HARDWARE_INIT_H_
 #define HARDWARE_INIT_H_
+
+//////////////////////////// METHODS ////////////////////////////
 
 void init();
 void initPinInputGPIO(enum portName port, int pin);

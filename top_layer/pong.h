@@ -7,20 +7,22 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "input_control.h"
+#include "middleware/input_control.h"
+#include "middleware/hardware_init.h"
 
 #ifndef PONG_H_
 #define PONG_H_
 
+///////////////////// PONG GAME DEFINES /////////////////////
 #define FIELD_WIDTH						80
 #define FIELD_HEIGHT					60
 #define PADDLE_WIDTH					3
 #define PADDLE_HEIGHT					8
 #define BALL_DIAMETER					3
 
-//typedef int screen[FIELD_WIDTH][FIELD_HEIGHT];
 
-void initPong();//int ** window);
+///////////////////// METHODS /////////////////////
+void initPong();
 void printField();
 void drawPadlleL(float position_float);
 void drawPadlleR(float position_float);

@@ -5,9 +5,9 @@
 #include "MK64F12.h"
 
 // DEBUG
-#include "hardware_init.h"
-#include "input_control.h"
-#include "enum_ports.h"
+#include "middleware/hardware_init.h"
+#include "middleware/input_control.h"
+#include "drivers/enum_ports.h"
 #include <stdio.h>
 
 
