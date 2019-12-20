@@ -7,8 +7,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "middleware/screen_control.h"
 #include "middleware/input_control.h"
 #include "middleware/hardware_init.h"
+
 
 #ifndef PONG_H_
 #define PONG_H_
@@ -23,6 +25,7 @@
 
 ///////////////////// METHODS /////////////////////
 void initPong();
+void startPong();
 void printField();
 void drawPadlleL(float position_float);
 void drawPadlleR(float position_float);

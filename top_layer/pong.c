@@ -5,7 +5,7 @@
  *      Author: Donovan
  */
 #include "pong.h"
-#include "vga_driver/vga_driver.h"
+#include "middleware/vga_screen.h"
 
 ///////////////////// GLOBAL GAME VARIABLES /////////////////////
 int OldPaddleL = 0;
@@ -26,6 +26,7 @@ int scoreL, scoreR = 0;
  * so it gets a random start when the game starts.
  */
 void initPong(){
+	enableScreen();
 	init();
 	initPinInterrupt(PORT_C, PTC12);
 	dx = randomStart();
@@ -216,6 +217,19 @@ void gameRestart(){
 	dx = randomStart();
 	dy = randomStart()/2;
 
+}
+
+/**
+ *	The startPong method runs the game
+ */
+void startPong(){
+	while(1){
+			// this defines the physics speed
+			for(int i = 0; i < 15000; i++ ){
+				asm("nop");
+			}
+			calculateNewFrame();
+		}
 }
 
 
