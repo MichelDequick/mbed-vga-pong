@@ -1,6 +1,9 @@
 # MBED-VGA-PONG
+![board](powered_board.jpg)
 ## Inleiding
 Het is de bedoeling om een scherm aan te sturen via VGA en op dit scherm het klassieke pong spel te spelen. Het spelen van het spel kan aan de hand van potentiometers en het spel starten aan de hand van een knop. 
+
+
 
 ## Te gebruiken tools
 + Mbed FRDM-K64F
